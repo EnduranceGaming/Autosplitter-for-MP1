@@ -19,33 +19,33 @@ startup
 
 	vars.LEVELS_START_POS = new Dictionary<int, Tuple<double, double, double>>()
 	{
-		{651, new Tuple<double, double, double>(-0.63, -0.235, -13.37)}, 			//P1C0
+		{651, new Tuple<double, double, double>(-0.63, -0.235, -13.37)}, 		//P1C0
 		{1608, new Tuple<double, double, double>(-3.72829, 0.265, 2.93426)}, 		//P1C1
 		{1260, new Tuple<double, double, double>(-7.9164, -1.535, 11.05049)}, 		//P1C2
 		{2094, new Tuple<double, double, double>(5.35735, -1.23565, -0.19876)}, 	//P1C3
-		{1656, new Tuple<double, double, double>(-0.245, 4.08, 1.245)}, 			//P1C4
+		{1656, new Tuple<double, double, double>(-0.245, 4.08, 1.245)}, 		//P1C4
 		{1338, new Tuple<double, double, double>(8.9852, -8.735, 16.8309)}, 		//P1C5
 		{1254, new Tuple<double, double, double>(8.91932, -2.70375, -19.90189)},	//P1C6
 		{1344, new Tuple<double, double, double>(-13.42828, 3.765, -21.90380)}, 	//P1C7
-		{1347, new Tuple<double, double, double>(3.228, -1.235, 4.41129)}, 			//P1C8
-		{234, new Tuple<double, double, double>(-4.16971, 3.265, -11.75)}, 			//P1C9
-		{417, new Tuple<double, double, double>(-0.88, 0.265, 0.13)}, 				//P2C0
+		{1347, new Tuple<double, double, double>(3.228, -1.235, 4.41129)}, 		//P1C8
+		{234, new Tuple<double, double, double>(-4.16971, 3.265, -11.75)}, 		//P1C9
+		{417, new Tuple<double, double, double>(-0.88, 0.265, 0.13)}, 			//P2C0
 		{1179, new Tuple<double, double, double>(1.58614, -1.735, 5.83239)}, 		//P2C1
 		{1086, new Tuple<double, double, double>(-5.22265, -5.735, -7.73495)}, 		//P2C2
 		{897, new Tuple<double, double, double>(7.86934, -3.735, -14.86930)}, 		//P2C3
-		{1581, new Tuple<double, double, double>(-3.88, -0.735, -12.12)}, 			//P2C4
-		{1620, new Tuple<double, double, double>(-2.9325, 3.39, -0.495)}, 			//P2C5
+		{1581, new Tuple<double, double, double>(-3.88, -0.735, -12.12)}, 		//P2C4
+		{1620, new Tuple<double, double, double>(-2.9325, 3.39, -0.495)}, 		//P2C5
 		{714, new Tuple<double, double, double>(-0.96905, -11.735, 0.17413)}, 		//P3C0
 		{1146, new Tuple<double, double, double>(18.52538, 8.02949, 21.91796)}, 	//P3C1
-		{1920, new Tuple<double, double, double>(1.995, 0.265, -6.495)}, 			//P3C2
-		{2781, new Tuple<double, double, double>(0.87, 0.265, 0.13)}, 				//P3C3
+		{1920, new Tuple<double, double, double>(1.995, 0.265, -6.495)}, 		//P3C2
+		{2781, new Tuple<double, double, double>(0.87, 0.265, 0.13)}, 			//P3C3
 		{1209, new Tuple<double, double, double>(-17.57814, -2.235, 27.09968)}, 	//P3C4
 		{1401, new Tuple<double, double, double>(13.86994, -1.735, 8.8075)}, 		//P3C5
-		{1014, new Tuple<double, double, double>(-12.995, -0.735, -1.87)}, 			//P3C6
+		{1014, new Tuple<double, double, double>(-12.995, -0.735, -1.87)}, 		//P3C6
 		{1110, new Tuple<double, double, double>(3.20039, -4.735, -0.1623)}, 		//P3C7
 		{1374, new Tuple<double, double, double>(6.92828, -30.735, -0.84619)}, 		//P3C8
 		{531, new Tuple<double, double, double>(0.05304, -5.235, 14.39606)}, 		//Tutorial
-		{402, new Tuple<double, double, double>(3.755, -1.235, 3.63)} 				//Secret Finale
+		{402, new Tuple<double, double, double>(3.755, -1.235, 3.63)} 			//Secret Finale
 	};
 
 	vars.LEVEL_NUMS = new int[27] {651, 1608, 1260, 2094, 1656, 1338, 1254, 1344, 1347, 234, 417, 1179, 1086, 897, 1581, 1620, 714, 1146, 1920, 2781, 1209, 1401, 1014, 1110, 1374, 531, 402};
