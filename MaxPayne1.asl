@@ -24,7 +24,7 @@ startup
 		{1608, new Tuple<double, double, double>(-3.72829, 0.265, 2.93426)}, 		//P1C1
 		{1260, new Tuple<double, double, double>(-7.9164, -1.535, 11.05049)}, 		//P1C2
 		{2094, new Tuple<double, double, double>(5.35735, -1.23565, -0.19876)}, 	//P1C3
-		{1656, new Tuple<double, double, double>(-0.245, 4.08, 1.245)}, 		//P1C4
+		{1656, new Tuple<double, double, double>(-0.245, 4.13, 1.245)}, 		//P1C4
 		{1338, new Tuple<double, double, double>(8.9852, -8.735, 16.8309)}, 		//P1C5
 		{1254, new Tuple<double, double, double>(8.91932, -2.70375, -19.90189)},	//P1C6
 		{1344, new Tuple<double, double, double>(-13.42828, 3.765, -21.90380)}, 	//P1C7
