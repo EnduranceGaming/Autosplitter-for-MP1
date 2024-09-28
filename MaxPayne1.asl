@@ -15,6 +15,7 @@ state("maxpayne")
 startup
 {
 	vars.EPSILON = 0.0003;
+	vars.START_POS_RANGE = 0.05;
 	vars.NYM_SAVE_LOAD_PENALTY = 5; //5 second penalty per save loaded for NYM runs
 
 	vars.LEVELS_START_POS = new Dictionary<int, Tuple<double, double, double>>()
@@ -72,19 +73,9 @@ init
 	//necessary to ensure that the timer will start correctly if the runner starts Livesplit while already loaded into a level
 	if (current.level > 0)
 	{
-		vars.startPositionX = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item1 - vars.EPSILON, vars.LEVELS_START_POS[current.level].Item1 + vars.EPSILON);
-		
-		//fix for P1C4 IL timer not starting sometimes due to framerate differences
-		if (current.level == vars.LEVEL_NUMS[4])
-		{
-			vars.startPositionY = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item2, vars.LEVELS_START_POS[current.level].Item2 + 0.12);
-		}
-		else
-		{
-			vars.startPositionY = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item2 - vars.EPSILON, vars.LEVELS_START_POS[current.level].Item2 + vars.EPSILON);
-		}
-
-		vars.startPositionZ = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item3 - vars.EPSILON, vars.LEVELS_START_POS[current.level].Item3 + vars.EPSILON);
+		vars.startPositionX = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item1 - vars.START_POS_RANGE, vars.LEVELS_START_POS[current.level].Item1 + vars.START_POS_RANGE);
+		vars.startPositionY = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item2 - vars.START_POS_RANGE, vars.LEVELS_START_POS[current.level].Item2 + vars.START_POS_RANGE);
+		vars.startPositionZ = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item3 - vars.START_POS_RANGE, vars.LEVELS_START_POS[current.level].Item3 + vars.START_POS_RANGE);
 	}
 	else
 	{
@@ -106,20 +97,11 @@ update
 
 	if (current.level > 0 && current.level != old.level)
 	{
-		// defines the coordinate range of Max's starting position for the current level (to deal with float inaccuracies)
-		vars.startPositionX = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item1 - vars.EPSILON, vars.LEVELS_START_POS[current.level].Item1 + vars.EPSILON);
-		
-		//fix for P1C4 IL timer not starting sometimes due to framerate differences
-		if (current.level == vars.LEVEL_NUMS[4])
-		{
-			vars.startPositionY = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item2, vars.LEVELS_START_POS[current.level].Item2 + 0.12);
-		}
-		else
-		{
-			vars.startPositionY = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item2 - vars.EPSILON, vars.LEVELS_START_POS[current.level].Item2 + vars.EPSILON);
-		}
-		
-		vars.startPositionZ = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item3 - vars.EPSILON, vars.LEVELS_START_POS[current.level].Item3 + vars.EPSILON);
+		// defines the coordinate range of Max's starting position for the current level
+		// (to deal with float inaccuracies and slight differences in starting position due to framerate differences)
+		vars.startPositionX = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item1 - vars.START_POS_RANGE, vars.LEVELS_START_POS[current.level].Item1 + vars.START_POS_RANGE);
+		vars.startPositionY = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item2 - vars.START_POS_RANGE, vars.LEVELS_START_POS[current.level].Item2 + vars.START_POS_RANGE);
+		vars.startPositionZ = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item3 - vars.START_POS_RANGE, vars.LEVELS_START_POS[current.level].Item3 + vars.START_POS_RANGE);
 	}
 
 	if (current.level > 0 && current.viewingComic == 0 && current.inCutscene == 0 &&
