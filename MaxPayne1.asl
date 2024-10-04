@@ -6,47 +6,46 @@ state("maxpayne")
 	int level : 0x4B1370;
 	int lastLevelComplete : 0x4B408C, 0x154;
 	int tutorialStatus : 0x4B3E7C;
-	float playerX : 0x4B709C, 0x49C;
-	float playerY : 0x4B709C, 0x4A0;
-	float playerZ : 0x4B709C, 0x4A4;
+	float playerX : 0x4B08C0;
+	float playerY : 0x4B08C4;
+	float playerZ : 0x4B08C8;
 	float nymGameTime : 0x4B709C, 0x770;
 }
 
 startup
 {
 	vars.EPSILON = 0.0003;
-	vars.START_POS_RANGE = 0.05;
 	vars.NYM_SAVE_LOAD_PENALTY = 5; //5 second penalty per save loaded for NYM runs
 
 	vars.LEVELS_START_POS = new Dictionary<int, Tuple<double, double, double>>()
 	{
-		{651, new Tuple<double, double, double>(-0.63, -0.235, -13.37)}, 		//P1C0
-		{1608, new Tuple<double, double, double>(-3.72829, 0.265, 2.93426)}, 		//P1C1
-		{1260, new Tuple<double, double, double>(-7.9164, -1.535, 11.05049)}, 		//P1C2
-		{2094, new Tuple<double, double, double>(5.35735, -1.23565, -0.19876)}, 	//P1C3
-		{1656, new Tuple<double, double, double>(-0.245, 4.13, 1.245)}, 		//P1C4
-		{1338, new Tuple<double, double, double>(8.9852, -8.735, 16.8309)}, 		//P1C5
-		{1254, new Tuple<double, double, double>(8.91932, -2.70375, -19.90189)},	//P1C6
-		{1344, new Tuple<double, double, double>(-13.42828, 3.765, -21.90380)}, 	//P1C7
-		{1347, new Tuple<double, double, double>(3.228, -1.235, 4.41129)}, 		//P1C8
-		{234, new Tuple<double, double, double>(-4.16971, 3.265, -11.75)}, 		//P1C9
-		{417, new Tuple<double, double, double>(-0.88, 0.265, 0.13)}, 			//P2C0
-		{1179, new Tuple<double, double, double>(1.58614, -1.735, 5.83239)}, 		//P2C1
-		{1086, new Tuple<double, double, double>(-5.22265, -5.735, -7.73495)}, 		//P2C2
-		{897, new Tuple<double, double, double>(7.86934, -3.735, -14.86930)}, 		//P2C3
-		{1581, new Tuple<double, double, double>(-3.88, -0.735, -12.12)}, 		//P2C4
-		{1620, new Tuple<double, double, double>(-2.9325, 3.39, -0.495)}, 		//P2C5
-		{714, new Tuple<double, double, double>(-0.96905, -11.735, 0.17413)}, 		//P3C0
-		{1146, new Tuple<double, double, double>(18.52538, 8.02949, 21.91796)}, 	//P3C1
-		{1920, new Tuple<double, double, double>(1.995, 0.265, -6.495)}, 		//P3C2
-		{2781, new Tuple<double, double, double>(0.87, 0.265, 0.13)}, 			//P3C3
-		{1209, new Tuple<double, double, double>(-17.57814, -2.235, 27.09968)}, 	//P3C4
-		{1401, new Tuple<double, double, double>(13.86994, -1.735, 8.8075)}, 		//P3C5
-		{1014, new Tuple<double, double, double>(-12.995, -0.735, -1.87)}, 		//P3C6
-		{1110, new Tuple<double, double, double>(3.20039, -4.735, -0.1623)}, 		//P3C7
-		{1374, new Tuple<double, double, double>(6.92828, -30.735, -0.84619)}, 		//P3C8
-		{531, new Tuple<double, double, double>(0.05304, -5.235, 14.39606)}, 		//Tutorial
-		{402, new Tuple<double, double, double>(3.755, -1.235, 3.63)} 			//Secret Finale
+		{651, new Tuple<double, double, double>(-1.27900, -0.51500, -13.25000)}, 	//P1C0
+		{1608, new Tuple<double, double, double>(-4.15398, -0.01500, 2.79962)}, 	//P1C1
+		{1260, new Tuple<double, double, double>(-8.13992, -1.81498, 11.34619)}, 	//P1C2
+		{2094, new Tuple<double, double, double>(5.72900, -1.51565, -0.26233)}, 	//P1C3
+		{1656, new Tuple<double, double, double>(-0.12500, 3.85000, 1.65400)}, 		//P1C4
+		{1338, new Tuple<double, double, double>(-34.00000, -11.01500, -12.02900)}, 	//P1C5
+		{1254, new Tuple<double, double, double>(8.75107, -2.98375, -19.39504)},	//P1C6
+		{1344, new Tuple<double, double, double>(-13.5, 4.01400, -21.75000)}, 		//P1C7
+		{1347, new Tuple<double, double, double>(3.84185, -1.51500, 4.26432)}, 		//P1C8
+		{234, new Tuple<double, double, double>(-4.00000, 1.46600, -11.75000)}, 	//P1C9
+		{417, new Tuple<double, double, double>(-1.00000, -0.01500, -0.27900)}, 	//P2C0
+		{1179, new Tuple<double, double, double>(1.75007, -2.01500, 6.40532)}, 		//P2C1
+		{1086, new Tuple<double, double, double>(-5.37386, -6.01500, -8.34099)}, 	//P2C2
+		{897, new Tuple<double, double, double>(7.74934, -4.01500, -15.27830)}, 	//P2C3
+		{1581, new Tuple<double, double, double>(-4.52900, -1.01500, -12.00000)}, 	//P2C4
+		{1620, new Tuple<double, double, double>(-3.3415, 3.11000, -0.37500)}, 		//P2C5
+		{714, new Tuple<double, double, double>(-0.58702, -12.01500, 0.25898)}, 	//P3C0
+		{1146, new Tuple<double, double, double>(18.44053, 8.27849, 22.06493)}, 	//P3C1
+		{1920, new Tuple<double, double, double>(2.40400, -0.01500, -6.375)}, 		//P3C2
+		{2781, new Tuple<double, double, double>(0.75, -0.01500, 0.77900)}, 		//P3C3
+		{1209, new Tuple<double, double, double>(-17.49977, -2.51500, 27.77921)}, 	//P3C4
+		{1401, new Tuple<double, double, double>(13.74994, -1.48600, 8.68750)}, 	//P3C5
+		{1014, new Tuple<double, double, double>(-13.40400, -1.01500, -1.7500)}, 	//P3C6
+		{1110, new Tuple<double, double, double>(3.62406, -6.37906, -0.00000)}, 	//P3C7
+		{1374, new Tuple<double, double, double>(7.52900, -31.01500, -1.00000)}, 	//P3C8
+		{531, new Tuple<double, double, double>(-0.17405, -5.51500, 14.68526)}, 	//Tutorial
+		{402, new Tuple<double, double, double>(3.34600, -1.51500, 3.7500)} 		//Secret Finale
 	};
 
 	vars.LEVEL_NUMS = new int[27] {651, 1608, 1260, 2094, 1656, 1338, 1254, 1344, 1347, 234, 417, 1179, 1086, 897, 1581, 1620, 714, 1146, 1920, 2781, 1209, 1401, 1014, 1110, 1374, 531, 402};
@@ -58,7 +57,7 @@ startup
 	settings.SetToolTip("nymSaveLoadPenalty", "On by default, as the loading penalty is applied to all runs on speedrun.com. A 5-second penalty is applied each time a save is loaded by the runner. But you can turn it off to match the raw in-game New York Minute timer for testing.");
 
 	settings.Add("ilRunMode", false, "IL Run Mode");
-	settings.SetToolTip("ilRunMode", "Starts the timer at the start of any level. Stops the timer when the level has been completed (Secret Finale not supported).");
+	settings.SetToolTip("ilRunMode", "Starts the timer at the start of any level. Stops the timer when the level has been completed (autostop is not supported for Secret Finale).");
 }
 
 init
@@ -73,9 +72,9 @@ init
 	//necessary to ensure that the timer will start correctly if the runner starts Livesplit while already loaded into a level
 	if (current.level > 0)
 	{
-		vars.startPositionX = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item1 - vars.START_POS_RANGE, vars.LEVELS_START_POS[current.level].Item1 + vars.START_POS_RANGE);
-		vars.startPositionY = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item2 - vars.START_POS_RANGE, vars.LEVELS_START_POS[current.level].Item2 + vars.START_POS_RANGE);
-		vars.startPositionZ = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item3 - vars.START_POS_RANGE, vars.LEVELS_START_POS[current.level].Item3 + vars.START_POS_RANGE);
+		vars.startPositionX = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item1 - vars.EPSILON, vars.LEVELS_START_POS[current.level].Item1 + vars.EPSILON);
+		vars.startPositionY = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item2 - vars.EPSILON, vars.LEVELS_START_POS[current.level].Item2 + vars.EPSILON);
+		vars.startPositionZ = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item3 - vars.EPSILON, vars.LEVELS_START_POS[current.level].Item3 + vars.EPSILON);
 	}
 	else
 	{
@@ -89,8 +88,8 @@ update
 {
 	// almost every time you kill an enemy in the tutorial, the so-called tutorial status will increment...
 	// we can use this to tell when the tutorial is complete, since killing enemies is the main and final goal
-	// note: there are some other tutorial actions that increment the tutorial status
-	if (current.level == 531 && current.tutorialStatus == old.tutorialStatus + 1)
+	// note: interacting with the enemy dispenser and painkillers in the subway entrance also increments the tutorial status
+	if (current.level == vars.LEVEL_NUMS[25] && current.tutorialStatus == old.tutorialStatus + 1)
 	{
 		vars.tutorialStatusIncrementedCount += 1;
 	}
@@ -98,34 +97,20 @@ update
 	if (current.level > 0 && current.level != old.level)
 	{
 		// defines the coordinate range of Max's starting position for the current level
-		// (to deal with float inaccuracies and slight differences in starting position due to framerate differences)
-		vars.startPositionX = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item1 - vars.START_POS_RANGE, vars.LEVELS_START_POS[current.level].Item1 + vars.START_POS_RANGE);
-		vars.startPositionY = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item2 - vars.START_POS_RANGE, vars.LEVELS_START_POS[current.level].Item2 + vars.START_POS_RANGE);
-		vars.startPositionZ = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item3 - vars.START_POS_RANGE, vars.LEVELS_START_POS[current.level].Item3 + vars.START_POS_RANGE);
+		// (to deal with float inaccuracies)
+		vars.startPositionX = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item1 - vars.EPSILON, vars.LEVELS_START_POS[current.level].Item1 + vars.EPSILON);
+		vars.startPositionY = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item2 - vars.EPSILON, vars.LEVELS_START_POS[current.level].Item2 + vars.EPSILON);
+		vars.startPositionZ = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item3 - vars.EPSILON, vars.LEVELS_START_POS[current.level].Item3 + vars.EPSILON);
 	}
 
-	if (current.level > 0 && current.viewingComic == 0 && current.inCutscene == 0 &&
-			current.playerX >= vars.startPositionX.Item1 && current.playerX <= vars.startPositionX.Item2 &&
-			current.playerY >= vars.startPositionY.Item1 && current.playerY <= vars.startPositionY.Item2 &&
-			current.playerZ >= vars.startPositionZ.Item1 && current.playerZ <= vars.startPositionZ.Item2)
+	vars.playerInStartPosition = current.level > 0  && (current.viewingComic == 0 && current.inCutscene == 0 &&
+		current.playerX >= vars.startPositionX.Item1 && current.playerX <= vars.startPositionX.Item2 &&
+		current.playerY >= vars.startPositionY.Item1 && current.playerY <= vars.startPositionY.Item2 &&
+		current.playerZ >= vars.startPositionZ.Item1 && current.playerZ <= vars.startPositionZ.Item2) &&
+		(settings["ilRunMode"] || current.level == vars.LEVEL_NUMS[0]);
+
+	if (!vars.playerInStartPosition)
 	{
-		if (settings["ilRunMode"])
-		{
-			vars.playerInStartPosition = true;
-		}
-		else if (current.level == vars.LEVEL_NUMS[0])
-		{
-			vars.playerInStartPosition = true;
-		}
-		else
-		{
-			vars.playerInStartPosition = false;
-			vars.resetValid = true;
-		}
-	}
-	else
-	{
-		vars.playerInStartPosition = false;
 		vars.resetValid = true;
 	}
 
@@ -150,6 +135,7 @@ reset
 {
 	if (vars.resetValid && vars.playerInStartPosition)
 	{
+		vars.resetValid = false;
 		return true;
 	}
 }
@@ -166,49 +152,38 @@ onReset
 
 split
 {
-	if (settings["ilRunMode"] && !vars.autoEndDone)
+	//see if the conditions are met to split for an IL run, special cases in this for P3C8 and the Tutorial
+	bool shouldSplit = !vars.autoEndDone && settings["ilRunMode"] &&
+		(current.level == vars.LEVEL_NUMS[24] && current.inCutscene == 1 && current.lastLevelComplete == 0 ||
+		current.level == vars.LEVEL_NUMS[25] && vars.tutorialStatusIncrementedCount == 8 ||
+		current.level > 0 && current.level != old.level);
+
+	//determine if the timer should split during a full game run
+	if (!shouldSplit)
 	{
-		// split at the end of P3C8 when the final cutscene begins
-		if (current.level == vars.LEVEL_NUMS[24] && current.inCutscene == 1 && current.lastLevelComplete == 0)
+		shouldSplit = !vars.autoEndDone && !settings["ilRunMode"] &&
+			current.level > 0 && current.level != old.level &&
+			current.level == vars.LEVEL_NUMS[vars.nextLevelIndex];
+
+		if (shouldSplit)
 		{
-			return true;
-		}
-		// split at the end of the Tutorial when the final enemy has been killed
-		else if (current.level == vars.LEVEL_NUMS[25] && vars.tutorialStatusIncrementedCount == 8)
-		{
-			return true;
-		}
-		// I tried multiple times to find a pointer or other memory address that would signify
-		// when the Secret Finale was complete, but I could not find one.
-		// split at the end of the Secret Finale when all the enemies are dead
-		// else if (current.level == vars.LEVEL_NUMS[26])
-		// {
-		//	return true;
-		// }
-		// split at the loading screen at the end for all the other levels
-		else if (current.level != old.level && current.level > 0)
-		{
-			return true;
+			vars.nextLevelIndex++;
 		}
 	}
 
-	if (!settings["ilRunMode"] && !vars.autoEndDone)
+	//special case to autosplit once the final cutscene in P3C8 has started
+	if (!shouldSplit)
 	{
-		if (current.level != old.level && current.level > 0)
-		{
-			if (current.level == vars.LEVEL_NUMS[vars.nextLevelIndex])
-			{
-				vars.nextLevelIndex++;
-				return true;
-			}
-		}
+		shouldSplit = !vars.autoEndDone && !settings["ilRunMode"] &&
+			current.level == vars.LEVEL_NUMS[24] && current.inCutscene == 1 &&
+			current.lastLevelComplete == 0;
 
-		//special case to autosplit once the final cutscene in P3C8 has started
-		if (current.level == vars.LEVEL_NUMS[24] && current.inCutscene == 1 && current.lastLevelComplete == 0)
-		{
-			vars.autoEndDone = true;
-			return true;
-		}
+		vars.autoEndDone = shouldSplit;
+	}
+
+	if (shouldSplit)
+	{
+		return true;
 	}
 }
 
