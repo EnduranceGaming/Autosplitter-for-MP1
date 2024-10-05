@@ -49,7 +49,7 @@ startup
 	};
 
 	vars.LEVEL_NUMS = new int[27] {651, 1608, 1260, 2094, 1656, 1338, 1254, 1344, 1347, 234, 417, 1179, 1086, 897, 1581, 1620, 714, 1146, 1920, 2781, 1209, 1401, 1014, 1110, 1374, 531, 402};
-	
+
 	settings.Add("nymRunMode", false, "NYM Run Mode");
 	settings.SetToolTip("nymRunMode", "Times the current run using the in-game New York Minute timer.");
 
@@ -103,11 +103,11 @@ update
 		vars.startPositionZ = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item3 - vars.EPSILON, vars.LEVELS_START_POS[current.level].Item3 + vars.EPSILON);
 	}
 
-	vars.playerInStartPosition = current.level > 0  && (current.viewingComic == 0 && current.inCutscene == 0 &&
+	vars.playerInStartPosition = current.level > 0 && (settings["ilRunMode"] || current.level == vars.LEVEL_NUMS[0]) &&
+		current.onLoadScreen == 0 && current.viewingComic == 0 && current.inCutscene == 0 &&
 		current.playerX >= vars.startPositionX.Item1 && current.playerX <= vars.startPositionX.Item2 &&
 		current.playerY >= vars.startPositionY.Item1 && current.playerY <= vars.startPositionY.Item2 &&
-		current.playerZ >= vars.startPositionZ.Item1 && current.playerZ <= vars.startPositionZ.Item2) &&
-		(settings["ilRunMode"] || current.level == vars.LEVEL_NUMS[0]);
+		current.playerZ >= vars.startPositionZ.Item1 && current.playerZ <= vars.startPositionZ.Item2;
 
 	if (!vars.playerInStartPosition)
 	{
@@ -135,7 +135,6 @@ reset
 {
 	if (vars.resetValid && vars.playerInStartPosition)
 	{
-		vars.resetValid = false;
 		return true;
 	}
 }
@@ -146,16 +145,14 @@ onReset
 	vars.autoEndDone = false;
 	vars.tutorialStatusIncrementedCount = 0;
 	vars.nextLevelIndex = 1;
-	vars.gameTime = new TimeSpan(0, 0, 0, 0);
 	vars.totalTimePenalty = 0;
 }
 
 split
 {
-	//see if the conditions are met to split for an IL run, special cases in this for P3C8 and the Tutorial
+	//see if the conditions are met to split for an IL run, there is a special case in this for the Tutorial
 	bool shouldSplit = !vars.autoEndDone && settings["ilRunMode"] &&
-		(current.level == vars.LEVEL_NUMS[24] && current.inCutscene == 1 && current.lastLevelComplete == 0 ||
-		current.level == vars.LEVEL_NUMS[25] && vars.tutorialStatusIncrementedCount == 8 ||
+		(current.level == vars.LEVEL_NUMS[25] && vars.tutorialStatusIncrementedCount == 8 ||
 		current.level > 0 && current.level != old.level);
 
 	//determine if the timer should split during a full game run
@@ -172,12 +169,9 @@ split
 	}
 
 	//special case to autosplit once the final cutscene in P3C8 has started
-	if (!shouldSplit)
+	if (!shouldSplit && !vars.autoEndDone)
 	{
-		shouldSplit = !vars.autoEndDone && !settings["ilRunMode"] &&
-			current.level == vars.LEVEL_NUMS[24] && current.inCutscene == 1 &&
-			current.lastLevelComplete == 0;
-
+		shouldSplit = current.level == vars.LEVEL_NUMS[24] && current.inCutscene == 1 && current.lastLevelComplete == 0;
 		vars.autoEndDone = shouldSplit;
 	}
 
