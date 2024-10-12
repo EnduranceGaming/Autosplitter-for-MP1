@@ -15,6 +15,7 @@ state("maxpayne")
 startup
 {
 	vars.EPSILON = 0.0003;
+	vars.START_POSITION_RANGE = 0.05;
 	vars.NYM_SAVE_LOAD_PENALTY = 5; //5 second penalty per save loaded for NYM runs
 
 	vars.LEVELS_START_POS = new Dictionary<int, Tuple<double, double, double>>()
@@ -24,7 +25,7 @@ startup
 		{1260, new Tuple<double, double, double>(-8.13992, -1.81498, 11.34619)}, 	//P1C2
 		{2094, new Tuple<double, double, double>(5.72900, -1.51565, -0.26233)}, 	//P1C3
 		{1656, new Tuple<double, double, double>(-0.12500, 3.85000, 1.65400)}, 		//P1C4
-		{1338, new Tuple<double, double, double>(-34.00000, -11.01500, -12.02900)}, 	//P1C5
+		{1338, new Tuple<double, double, double>(-34.00000, -11.01500, -12.02900)}, //P1C5
 		{1254, new Tuple<double, double, double>(8.75107, -2.98375, -19.39504)},	//P1C6
 		{1344, new Tuple<double, double, double>(-13.5, 4.01400, -21.75000)}, 		//P1C7
 		{1347, new Tuple<double, double, double>(3.84185, -1.51500, 4.26432)}, 		//P1C8
@@ -72,9 +73,11 @@ init
 	//necessary to ensure that the timer will start correctly if the runner starts Livesplit while already loaded into a level
 	if (current.level > 0)
 	{
-		vars.startPositionX = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item1 - vars.EPSILON, vars.LEVELS_START_POS[current.level].Item1 + vars.EPSILON);
-		vars.startPositionY = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item2 - vars.EPSILON, vars.LEVELS_START_POS[current.level].Item2 + vars.EPSILON);
-		vars.startPositionZ = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item3 - vars.EPSILON, vars.LEVELS_START_POS[current.level].Item3 + vars.EPSILON);
+		// defines the coordinate range of Max's starting position for the current level
+		// (to deal with float inaccuracies and slight differences in position due to inputs on the loading screen affecting Max's starting position)
+		vars.startPositionX = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item1 - vars.START_POSITION_RANGE, vars.LEVELS_START_POS[current.level].Item1 + vars.START_POSITION_RANGE);
+		vars.startPositionY = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item2 - vars.START_POSITION_RANGE, vars.LEVELS_START_POS[current.level].Item2 + vars.START_POSITION_RANGE);
+		vars.startPositionZ = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item3 - vars.START_POSITION_RANGE, vars.LEVELS_START_POS[current.level].Item3 + vars.START_POSITION_RANGE);
 	}
 	else
 	{
@@ -97,10 +100,10 @@ update
 	if (current.level > 0 && current.level != old.level)
 	{
 		// defines the coordinate range of Max's starting position for the current level
-		// (to deal with float inaccuracies)
-		vars.startPositionX = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item1 - vars.EPSILON, vars.LEVELS_START_POS[current.level].Item1 + vars.EPSILON);
-		vars.startPositionY = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item2 - vars.EPSILON, vars.LEVELS_START_POS[current.level].Item2 + vars.EPSILON);
-		vars.startPositionZ = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item3 - vars.EPSILON, vars.LEVELS_START_POS[current.level].Item3 + vars.EPSILON);
+		// (to deal with float inaccuracies and slight differences in position due to inputs on the loading screen affecting Max's starting position)
+		vars.startPositionX = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item1 - vars.START_POSITION_RANGE, vars.LEVELS_START_POS[current.level].Item1 + vars.START_POSITION_RANGE);
+		vars.startPositionY = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item2 - vars.START_POSITION_RANGE, vars.LEVELS_START_POS[current.level].Item2 + vars.START_POSITION_RANGE);
+		vars.startPositionZ = new Tuple<double, double>(vars.LEVELS_START_POS[current.level].Item3 - vars.START_POSITION_RANGE, vars.LEVELS_START_POS[current.level].Item3 + vars.START_POSITION_RANGE);
 	}
 
 	vars.playerInStartPosition = current.level > 0 && (settings["ilRunMode"] || current.level == vars.LEVEL_NUMS[0]) &&
